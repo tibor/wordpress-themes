@@ -14,6 +14,13 @@ function disable_wp_emojicons() {
 add_action( 'init', 'disable_wp_emojicons' );
 add_filter( 'emoji_svg_url', '__return_false' );
 
+add_action( 'wp_print_styles',     'my_deregister_styles', 100 );
+
+function my_deregister_styles()    { 
+   //wp_deregister_style( 'amethyst-dashicons-style' ); 
+   wp_deregister_style( 'dashicons' ); 
+}
+
 add_filter('wp_theme_editor_filetypes', function ($types) {
   $types[] = 'scss';
   $types[] = 'js';
